@@ -18,15 +18,15 @@ async function main() {
         // Handle different modes
         if(process.env.MODE === 'MINT'){
             console.log("Sneiper in MINT mode");
-            console.log("Checking if you hold any FrankenFrens...");
-            const isHolder = await getHoldings(senderAddress, signingCosmWasmClient);
-            let needsToPayFee = true;
-            if(isHolder >= 5){
+            //console.log("Checking if you hold any FrankenFrens...");
+            //const isHolder = await getHoldings(senderAddress, signingCosmWasmClient);
+            let needsToPayFee = false;
+            /*if(isHolder >= 5){
                 console.log("You hold at least 5 FrankenFrens so you will not be charged any fees for every successful mint!");
                 needsToPayFee = false;
             } else {
                 console.log("You do not hold at least 5 FrankenFrens so a fee of 0.1 SEI will be charged for every successful mint!");
-            }
+            }*/
             const pollingFrequency = parseFloat(process.env.POLLING_FREQUENCY) * 1000;
             if (!isNaN(pollingFrequency) && pollingFrequency > 0) {
                 const intervalId = setInterval(() => mintSneiper(senderAddress, needsToPayFee, signingCosmWasmClient), pollingFrequency);
